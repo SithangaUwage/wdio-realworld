@@ -1,0 +1,31 @@
+{
+  "name": "wdio-realworld",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SithangaUwage/wdio-realworld.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SithangaUwage/wdio-realworld/issues"
+  },
+  "homepage": "https://github.com/SithangaUwage/wdio-realworld#readme",
+  "dependencies": {
+    "@wdio/cli": "^6.4.6"
+  },
+  "devDependencies": {
+    "@wdio/local-runner": "^6.4.6",
+    "@wdio/mocha-framework": "^6.4.0",
+    "@wdio/spec-reporter": "^6.4.0",
+    "@wdio/sync": "^6.4.6",
+    "chromedriver": "^85.0.0",
+    "wdio-chromedriver-service": "^6.0.4"
+  }
+}
