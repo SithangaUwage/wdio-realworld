@@ -178,6 +178,16 @@ exports.config = {
      * @param {Array.<String>} specs List of spec file paths that are to be run
      */
     // before: function (capabilities, specs) {
+    //     browser.throttle({
+    //         latency: 1000,
+    //         offline: false,
+    //         downloadThroughput: 1000000,
+    //         uploadThroughput: 1000000
+            /*
+							The larger the latency, the longer the delay before requests are handled. The higher the throughput,
+							the more data can cross the wire at any given time. Both of those combine to impact overall page load speed.
+            */
+        // })
     // },
     /**
      * Runs before a WebdriverIO command gets executed.
