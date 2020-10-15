@@ -5,6 +5,8 @@
   - describe.only() => run single describe block
 */
 const Auth = require('../pageObjects/Auth.page');
+const { user1 } = require('../fixtures/users');
+
 const auth = new Auth();
   
 describe('Login Page', function () {
@@ -13,20 +15,23 @@ describe('Login Page', function () {
   });
     
   it('should let you log in', function () {
-    auth.login('demo@learnwebdriverio.com', 'wdiodemo');
+    auth.login(user1);
     expect(auth.$errorMessages).not.toBeExisting();
   })
 
   it('should error with a missing username', function () {
-    auth.login('', 'wdiodemo');
-    // assert that error message is showing
+    auth.login({
+      email: '',
+      password: user1.password
+    });
     expect(auth.$errorMessages).toHaveText(`email can't be blank`);
-
   });
   
   it('should error with a missing password', function () {
-    auth.login('demo@learnwebdriverio.com', '');
-    // assert that error message is showing
+    auth.login({
+      email: user1.email,
+      password: ''
+    });
     expect(auth.$errorMessages).toHaveText(`password can't be blank`);
   });
 })

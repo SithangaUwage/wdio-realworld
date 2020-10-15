@@ -4,19 +4,17 @@ const { user1 } = require('../fixtures/users');
 
 const auth = new Auth();
 const editor = new Editor();
+
 describe('Post Editor', function () {
 	before(function () {
-		// Load the login page
-		browser.url('./login');
-		// Login with a valid user
-		auth.login(user1.email, user1.password);
-		});
+		auth.load();
+		auth.login(user1);
+	});
 	beforeEach(function () {
-		// Load the Post Editor page
-		browser.url('./editor');
+		editor.load();
 	});
 	it('should load page properly', function () {
-		expect(browser).toHaveUrl('editor', { containing: true });
+		expect(browser).toHaveUrl(editor.url.href);
 		expect(editor.$title).toBeExisting();
 		expect(editor.$description).toBeExisting();
 		expect(editor.$body).toBeExisting();
