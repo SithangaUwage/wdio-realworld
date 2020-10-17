@@ -40,6 +40,27 @@ describe('Post Editor', function () {
 
     expect(article.$title).toHaveText(articleDetails.title);
     expect(article.$body).toHaveText(articleDetails.body);
+    expect(article.tags).toEqual(articleDetails.tags);
     $('button*=Delete Article').click();
   })
 });
+
+describe('"Unsaved Changes" alerts', function () {
+  beforeEach(function () {
+    editor.$title.setValue('Unsaved Change');
+  });
+
+  it('should alert you when using browser navigation', function () {
+    browser.refresh();
+    expect(() => browser.acceptAlert()).not.toThrow();
+  });
+
+  it('should warn you when trying to change URL', function () {
+    $('=Home').click();
+    const alertText = browser.getAlertText();
+    expect(alertText).toEqual('Do you really want to leave? You have unsaved changes!');
+    browser.acceptAlert();
+    });
+    
+});
+  
