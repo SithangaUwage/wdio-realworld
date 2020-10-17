@@ -38,12 +38,8 @@ describe('Post Editor', function () {
 
     editor.submitArticle(articleDetails);
 
-    const slug = articleDetails.title
-      .toLowerCase()
-      .replace(/ /g, '-')
-      .replace(/[^\w-]+/g, '');
-
-    expect(browser).toHaveUrl(`articles/${slug}`, { containing: true });
+    expect(article.$title).toHaveText(articleDetails.title);
+    expect(article.$body).toHaveText(articleDetails.body);
     $('button*=Delete Article').click();
   })
 });
