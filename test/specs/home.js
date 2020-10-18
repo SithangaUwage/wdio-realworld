@@ -7,8 +7,23 @@ const auth = new Auth();
 
 describe('Homepage', function () {
   before(function () {
-    // load the page
+    // 1. Require our Api file
+    const Api = require('../../utils/Api');
+    // 2. Instantiate a new Api instance with the url of our Api
+    const api = new Api('http://localhost:3000/api/');
+    // 3. Call the `getAuthToken` function
+    const token = browser.call(() => {
+      return api.getAuthToken(user1);
+    });
+    // 4. Load the page in an unauthorized state
     home.load();
+    // 5. Set the token
+    browser.execute((browserToken) => {
+      window.localStorage.setItem('id_token', browserToken);
+    }, token);
+    // 6. Reload the homepage
+    home.load();
+
   });
 
   it('should load properly', function () {
