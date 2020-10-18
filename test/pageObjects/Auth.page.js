@@ -22,6 +22,13 @@ class Auth extends Generic {
 		},
 		{ timoutMsg: 'The "Sign in" button still exists and an error never appeared' }
 		);
-	}
+  }
+  
+  clearSession() {
+    browser.execute(function () {
+      window.localStorage.clear();
+    });
+  }
+    
 }
 module.exports = Auth;
