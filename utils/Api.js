@@ -8,7 +8,7 @@ class Api {
   }
   getAuthToken({ email, password }) {
     return this.client
-    .post('/users/login', {
+    .post('users/login', {
       json: { user: { email, password } }
     })
     .then((response) => response.body.user.token);
