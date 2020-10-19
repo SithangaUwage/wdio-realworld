@@ -32,7 +32,37 @@ describe('Homepage', function () {
   it('should only show the global feed tab', function () {
     expect(home.feedTabsText).toEqual(['Your Feed', 'Global Feed']);
   });
+
+  it('should default to showing the global feed', function () {
+    // get all tabs with an 'active' class, check only one returns with correct text
+    expect(home.activeFeedTabText).toEqual(['Global Feed']);
+  });
+
+  it('should let you switch between global and personal feeds', function () {
+    home.clickTab('Your Feed');
+    expect(home.activeFeedTabText).toEqual(['Your Feed']);
+    home.clickTab('Global Feed');
+    expect(home.activeFeedTabText).toEqual(['Global Feed']);
+  });
 });
+
+describe('Personal Feed', function () {
+  before(function () {
+  // ensure we're on the personal feed tab
+    if (home.activeFeedTabText !== 'Your Feed') {
+      home.clickTab('Your Feed');
+    }
+  });
+
+  it('should show most recent articles from people you follow', function () {
+    expect(home.currentFeed.$$articles).toHaveChildren(1);
+  });
+  after(function () {
+    auth.clearSession();
+  });
+});
+  
+  
 
 // describe('Logged In', function () {
 //   before(function () {
